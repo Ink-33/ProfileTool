@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Ink-33/ProfileTool/internal/image"
+	"github.com/Ink-33/ProfileTool/utils"
 	log "github.com/Ink-33/logger"
 )
 
@@ -22,7 +23,7 @@ func Image(storage *image.Images) func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		defer func() {
-			log.Info("%v %v %v %v %v", r.RemoteAddr, r.Method, r.URL.Path, code, name)
+			log.Info("%v %v %v %v %v", utils.ReadUserIP(r), r.Method, r.URL.Path, code, name)
 			if code != http.StatusOK {
 				w.WriteHeader(code)
 			}

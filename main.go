@@ -10,6 +10,7 @@ import (
 	"github.com/Ink-33/ProfileTool/config"
 	"github.com/Ink-33/ProfileTool/internal/image"
 	"github.com/Ink-33/ProfileTool/service"
+	"github.com/Ink-33/ProfileTool/utils"
 	log "github.com/Ink-33/logger"
 )
 
@@ -42,7 +43,7 @@ func main() {
 	mux := &http.ServeMux{}
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Info("%v %v %v %v", r.RemoteAddr, r.Method, r.URL.Path, http.StatusNotFound)
+		log.Info("%v %v %v %v", utils.ReadUserIP(r), r.Method, r.URL.Path, http.StatusNotFound)
 		w.WriteHeader(http.StatusNotFound)
 	})
 
